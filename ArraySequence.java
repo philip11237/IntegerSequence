@@ -15,10 +15,28 @@ public class ArraySequence implements IntegerSequence{
     data = new int[otherseq.length()];
     int i=0;
     otherseq.reset();
-    while (otherseq.hasNext){
+    while (otherseq.hasNext()){
       data[i]=otherseq.next();
       i++;
     }
     otherseq.reset();
   }
+  public boolean hasNext(){
+    return currentIndex<data.length;
+  }
+  public void reset(){
+    currentIndex=0;
+  }
+    public int next(){
+      if (! hasNext()) {
+      throw new NoSuchElementException();
+    }
+    else{
+      currentIndex=currentIndex+1;
+    }
+     return data[currentIndex-1];
+    }
+    public int length(){
+      return data.length;
+    }
 }
